@@ -180,6 +180,7 @@ the repo. Opset 12, static batch 1, no NMS in the graph, `simplify=True`.
 | `ppe_yolov8s_640.onnx` | 44.75 MB (44,754,287 B) | `images` float32 [1,3,640,640] | `output0` float32 [1,10,8400] | 0.461 / 0.215 | 93.3 / 296.8 ms |
 | `ppe_yolov8s_640_int8dyn.onnx` | 11.49 MB (11,492,847 B) | `images` float32 [1,3,640,640] | `output0` float32 [1,10,8400] | 0.455 / 0.211 | 130.3 / 158.8 ms |
 | `ppe_yolov8s_320.onnx` | 44.63 MB (44,628,205 B) | `images` float32 [1,3,320,320] | `output0` float32 [1,10,2100] | 0.419 / 0.191 | 22.5 / 28.2 ms |
+| `ppe_yolov8s_320_int8dyn.onnx` | 11.37 MB (11,366,765 B) | `images` float32 [1,3,320,320] | `output0` float32 [1,10,2100] | 0.414 / 0.187 | not timed |
 
 Latency: onnxruntime 1.31.1 `CPUExecutionProvider`, 4 intra-op threads,
 10 warm-up runs then 100 timed runs over real test images, model forward
@@ -187,8 +188,10 @@ only (no preprocessing, no NMS). The fp32 640 run had a long tail (mean
 128.2 ms against p50 93.3 ms) on this shared VM, so treat its p95 with care.
 The int8 file is dynamic weight quantisation (`quantize_dynamic`, QUInt8); it
 is 4x smaller and loses 0.006 mAP50 here, but runs slower than fp32 on this
-CPU. It uses `ConvInteger`/`DynamicQuantizeLinear`, which was not tested in
-onnxruntime-web. An fp16 variant was attempted with onnxconverter-common 1.16
+CPU. It uses `ConvInteger`/`DynamicQuantizeLinear`. The 320 int8 file (scored
+11 Nov 2026 with Ultralytics val at imgsz 320, P 0.548, R 0.491) runs in
+onnxruntime-web 1.31.1 on the wasm backend and is the model behind the
+in-browser demo on zulfaqarhafez.com. An fp16 variant was attempted with onnxconverter-common 1.16
 and did not load in onnxruntime (Resize cast type error), so none is
 provided.
 

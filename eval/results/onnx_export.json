@@ -192,6 +192,19 @@
     "precision": 0.4882194469308776,
     "recall": 0.5450047041954295
    }
+  },
+  "int8dyn_320": {
+   "file": "ppe_yolov8s_320_int8dyn.onnx",
+   "bytes": 11366765,
+   "quantisation": "onnxruntime quantize_dynamic, QUInt8, from the fp32 320 export",
+   "input": "images float32 [1,3,320,320]",
+   "output": "output0 float32 [1,10,2100]",
+   "test_map50": 0.4135,
+   "test_map50_95": 0.1867,
+   "test_precision": 0.548,
+   "test_recall": 0.491,
+   "eval": "ultralytics val, imgsz 320, batch 1, CPU, test split 255 images 1,237 boxes, 2026-11-11",
+   "note": "Used by the in-browser demo on zulfaqarhafez.com (onnxruntime-web 1.31.1, wasm backend); browser decode matched Python decode on 3 test images."
   }
  }
 }
