@@ -223,6 +223,8 @@ curl -X POST http://localhost:8080/process-image \
 | **mAP50-95** | 0.35-0.36 | Robust across IoU thresholds |
 | **Inference Speed** | 1-2 FPS | CPU-based processing (real-time capable) |
 
+These figures are validation-split metrics recorded during training. On the held-out test split (255 images, 1,237 boxes, measured November 2026) the deployed `best_deep.pt` scores mAP50 0.468 and mAP50-95 0.217. Per-class results, error analysis and an ONNX export for the browser: [eval/README.md](eval/README.md).
+
 ### Training Evolution
 
 | Iteration | Dataset Size | Key Focus | mAP50-95 | Outcome |
@@ -234,6 +236,8 @@ curl -X POST http://localhost:8080/process-image \
 | **Iter 5** | **~6,000** | **Production** | **0.35-0.36** | ✅ **Deployed model** |
 
 **Key Insight:** Quality over quantity - 6,000 curated and balanced images outperformed 100,000 imbalanced images!
+
+*"~6,000" counts augmented copies: the final dataset has 2,354 distinct source images expanded to 6,367 labelled images (see Model Access below).*
 
 **For complete training analysis:** See [docs/MODEL_TRAINING.md](docs/MODEL_TRAINING.md)
 
@@ -317,9 +321,9 @@ Phase 1 focused on binary classification (helmet/no helmet) using ResNet-18:
 
 **Model Access:**
 - Repository: [`iMaximusiV/yolo-ppe-detector`](https://huggingface.co/iMaximusiV/yolo-ppe-detector)
-- Production Model: `best_100Epoch.pt` (22.5 MB)
-- Training: 1,200+ images, ~8,500 annotations
-- Classes: 6 (Hardhat, Vest, Mask, Cone, Machinery, Vehicle)
+- Production Model: `best_100Epoch.pt` (22.5 MB); note that the backend default is `best_deep.pt`
+- Dataset (final iteration, counted from the label files in `yolo-v8-new-model/`): 6,367 labelled images from 2,354 source images (train 5,847 after about 3x augmentation, valid 265, test 255), 23,410 boxes
+- Classes: 6 (Gloves, Helmet, No-Helmet, No-gloves, No-vest, Vest)
 
 ---
 

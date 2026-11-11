@@ -1,0 +1,197 @@
+{
+ "weights": "best_deep.pt",
+ "opset": 12,
+ "onnxruntime": "1.31.1",
+ "variants": {
+  "fp32_640": {
+   "path": "ppe_yolov8s_640.onnx",
+   "size_bytes": 44754287,
+   "size_mb": 44.75,
+   "imgsz": 640,
+   "io": {
+    "inputs": [
+     {
+      "name": "images",
+      "shape": [
+       1,
+       3,
+       640,
+       640
+      ],
+      "dtype": "FLOAT"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "output0",
+      "shape": [
+       1,
+       10,
+       8400
+      ],
+      "dtype": "FLOAT"
+     }
+    ],
+    "opset": 12,
+    "metadata": {
+     "description": "Ultralytics best_deep model trained on data.yaml",
+     "author": "Ultralytics",
+     "date": "2026-11-11T05:07:28.475253+00:00",
+     "version": "8.4.210",
+     "license": "AGPL-3.0 License (https://ultralytics.com/license)",
+     "docs": "https://docs.ultralytics.com",
+     "stride": "32",
+     "task": "detect",
+     "head": "Detect",
+     "batch": "1",
+     "imgsz": "[640, 640]",
+     "names": "{0: 'Gloves', 1: 'Helmet', 2: 'No-Helmet', 3: 'No-gloves', 4: 'No-vest', 5: 'Vest'}",
+     "args": "{'data': None, 'batch': 1, 'fraction': 1.0, 'quantize': None, 'nms': False, 'dynamic': False, 'simplify': True, 'opset': 12}",
+     "channels": "3",
+     "end2end": "False"
+    }
+   },
+   "latency_cpu": {
+    "runs": 100,
+    "threads": 4,
+    "p50_ms": 93.3,
+    "p95_ms": 296.8,
+    "mean_ms": 128.2,
+    "note": "model forward only; excludes preprocessing and NMS"
+   },
+   "test_metrics": {
+    "mAP50": 0.46063395117199873,
+    "mAP50_95": 0.21468299939331714,
+    "precision": 0.48880084172007865,
+    "recall": 0.5505763885007485
+   }
+  },
+  "fp32_320": {
+   "path": "ppe_yolov8s_320.onnx",
+   "size_bytes": 44628205,
+   "size_mb": 44.63,
+   "imgsz": 320,
+   "io": {
+    "inputs": [
+     {
+      "name": "images",
+      "shape": [
+       1,
+       3,
+       320,
+       320
+      ],
+      "dtype": "FLOAT"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "output0",
+      "shape": [
+       1,
+       10,
+       2100
+      ],
+      "dtype": "FLOAT"
+     }
+    ],
+    "opset": 12,
+    "metadata": {
+     "description": "Ultralytics best_deep model trained on data.yaml",
+     "author": "Ultralytics",
+     "date": "2026-11-11T05:07:30.094137+00:00",
+     "version": "8.4.210",
+     "license": "AGPL-3.0 License (https://ultralytics.com/license)",
+     "docs": "https://docs.ultralytics.com",
+     "stride": "32",
+     "task": "detect",
+     "head": "Detect",
+     "batch": "1",
+     "imgsz": "[320, 320]",
+     "names": "{0: 'Gloves', 1: 'Helmet', 2: 'No-Helmet', 3: 'No-gloves', 4: 'No-vest', 5: 'Vest'}",
+     "args": "{'data': None, 'batch': 1, 'fraction': 1.0, 'quantize': None, 'nms': False, 'dynamic': False, 'simplify': True, 'opset': 12}",
+     "channels": "3",
+     "end2end": "False"
+    }
+   },
+   "latency_cpu": {
+    "runs": 100,
+    "threads": 4,
+    "p50_ms": 22.5,
+    "p95_ms": 28.2,
+    "mean_ms": 23.7,
+    "note": "model forward only; excludes preprocessing and NMS"
+   },
+   "test_metrics": {
+    "mAP50": 0.4186678300223048,
+    "mAP50_95": 0.19096108176748564,
+    "precision": 0.5390255392483093,
+    "recall": 0.5045472895910347
+   }
+  },
+  "int8dyn_640": {
+   "path": "ppe_yolov8s_640_int8dyn.onnx",
+   "size_bytes": 11492847,
+   "size_mb": 11.49,
+   "imgsz": 640,
+   "io": {
+    "inputs": [
+     {
+      "name": "images",
+      "shape": [
+       1,
+       3,
+       640,
+       640
+      ],
+      "dtype": "FLOAT"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "output0",
+      "shape": [
+       1,
+       10,
+       8400
+      ],
+      "dtype": "FLOAT"
+     }
+    ],
+    "opset": 12,
+    "metadata": {
+     "onnx.infer": "onnxruntime.quant",
+     "description": "Ultralytics best_deep model trained on data.yaml",
+     "author": "Ultralytics",
+     "date": "2026-11-11T05:07:28.475253+00:00",
+     "version": "8.4.210",
+     "license": "AGPL-3.0 License (https://ultralytics.com/license)",
+     "docs": "https://docs.ultralytics.com",
+     "stride": "32",
+     "task": "detect",
+     "head": "Detect",
+     "batch": "1",
+     "imgsz": "[640, 640]",
+     "names": "{0: 'Gloves', 1: 'Helmet', 2: 'No-Helmet', 3: 'No-gloves', 4: 'No-vest', 5: 'Vest'}",
+     "args": "{'data': None, 'batch': 1, 'fraction': 1.0, 'quantize': None, 'nms': False, 'dynamic': False, 'simplify': True, 'opset': 12}",
+     "channels": "3",
+     "end2end": "False"
+    }
+   },
+   "latency_cpu": {
+    "runs": 100,
+    "threads": 4,
+    "p50_ms": 130.3,
+    "p95_ms": 158.8,
+    "mean_ms": 134.9,
+    "note": "model forward only; excludes preprocessing and NMS"
+   },
+   "test_metrics": {
+    "mAP50": 0.45512042718064566,
+    "mAP50_95": 0.21095010125868133,
+    "precision": 0.4882194469308776,
+    "recall": 0.5450047041954295
+   }
+  }
+ }
+}
